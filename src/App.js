@@ -1,4 +1,5 @@
-import { BrowserRouter, Link, Route, Switch } from 'react-router-dom'
+import React, {useState} from "react"
+import { BrowserRouter, Link, Navigate, Route, Routes} from 'react-router-dom'
 
 // pages
 import Home from './pages/Home'
@@ -6,7 +7,14 @@ import About from './pages/About'
 import Products from './pages/Products'
 import ProductDetails from './pages/ProductDetails'
 
+
 function App() {
+  const [cartISEmpty] = useState(true)
+  //no longer use Switch  but Routes
+  //no longer use components={} but element={jsx eg <About />}
+  //no longer use exac
+  // allow for conditional navigation element{ condition ? jsx : jsx}
+  //new redirect eg element={<Navigate to="/about" />} 
   return (
     <div className="App">
       <BrowserRouter>
@@ -16,18 +24,21 @@ function App() {
           <Link to="/about">About</Link>
           <Link to="/products">Products</Link>
         </nav>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/products/:id">
-            <ProductDetails />
-          </Route>
-          <Route path="/products">
-            <Products />
-          </Route>
-        </Switch>
+        
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+         
+          <Route path="/products/:id" element={<ProductDetails />} />
+    
+          <Route path="/products" element={ <Products />} />
+
+          <Route path="/redirect" element={<Navigate to="/about" />}  />
+          <Route 
+          path="/checkout" 
+          element={cartISEmpty ? (<Navigate to="/products" />) : <p>checkout</p>} 
+          />
+        </Routes>
       </BrowserRouter>
     </div>
   )
