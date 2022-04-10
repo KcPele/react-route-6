@@ -1,11 +1,10 @@
-import { Route, useParams  } from "react-router-dom"
+import { Route, useParams, Routes  } from "react-router-dom"
 
 // nested routes
 import Offers from "./Offers"
 
 export default function ProductDetails() {
   const { id } = useParams()
-  // const { path } = useRouteMatch()
 
   return (
     <div className="content">
@@ -19,10 +18,12 @@ export default function ProductDetails() {
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi voluptate neque harum. Quam facere accusamus exercitationem in quidem mollitia eligendi porro eos voluptates iure incidunt, laudantium sed harum omnis quasi?</p>
         </div>
       </div>
-
-      {/* <Route path={`${path}/offers`}>
-        <Offers />
-      </Route> */}
+ <Routes >
+   {/* this path is relative to the parent path it will display the product and offers component when u visit /products/id/offers*/}
+      <Route path="offers" element={ <Offers />
+     } />
+       
+      </Routes>
     </div>
   )
 }

@@ -15,6 +15,7 @@ function App() {
   //no longer use exac
   // allow for conditional navigation element{ condition ? jsx : jsx}
   //new redirect eg element={<Navigate to="/about" />} 
+  // /path/* match any route after path
   return (
     <div className="App">
       <BrowserRouter>
@@ -27,9 +28,9 @@ function App() {
         
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/about/*" element={<About />} />
          
-          <Route path="/products/:id" element={<ProductDetails />} />
+          <Route path="/products/:id/*" element={<ProductDetails />} />
     
           <Route path="/products" element={ <Products />} />
 
