@@ -1,14 +1,16 @@
 import React, {useState} from "react"
 import { BrowserRouter, Link, Navigate, Route, Routes} from 'react-router-dom'
 
-// pages
+// // pages
 import Home from './pages/Home'
 import About from './pages/About'
 import Products from './pages/Products'
 import ProductDetails from './pages/ProductDetails'
+// import Cards from "./pages/Cards"
 
 
 function App() {
+ 
   const [cartISEmpty] = useState(true)
   //no longer use Switch  but Routes
   //no longer use components={} but element={jsx eg <About />}
@@ -17,8 +19,11 @@ function App() {
   //new redirect eg element={<Navigate to="/about" />} 
   // /path/* match any route after path
   return (
+   
     <div className="App">
-      <BrowserRouter>
+       {/* <Cards amount={4} /> */}
+
+       <BrowserRouter>
         <nav>
           <h1>The Ninja Clothing Company</h1>
           <Link to="/">Home</Link>
@@ -40,8 +45,9 @@ function App() {
           element={cartISEmpty ? (<Navigate to="/products" />) : <p>checkout</p>} 
           />
         </Routes>
-      </BrowserRouter>
-    </div>
+        
+      </BrowserRouter> 
+   </div>
   )
 }
 
